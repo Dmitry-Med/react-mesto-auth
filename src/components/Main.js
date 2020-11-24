@@ -3,7 +3,6 @@ import editButton from "../images/pen.svg";
 import addButton from "../images/plus.svg";
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-//import { CardsContext } from "../contexts/CardsContext";
 
 function Main({
   cards,

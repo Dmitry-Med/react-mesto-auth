@@ -15,8 +15,7 @@ export const register = (email, password) => {
     return res.json();
     }
     return Promise.reject(res);
-  })  
-  .catch((err) => console.log(err))
+  })    
 };
 
 export const authorize = (email, password) => {
@@ -37,8 +36,7 @@ export const authorize = (email, password) => {
       setToken(data.jwt);      
       return data;
     
-  })
-  .catch((err) => console.log(err))
+  })  
 };
 
 export const getContent = (token) => {
@@ -50,6 +48,5 @@ export const getContent = (token) => {
       'Authorization': `Bearer ${token}`,
     }
   })
-  .then((res) => res.json()) 
-  .catch((err) => console.log(err)) 
+  .then((res) => res.json())   
 };

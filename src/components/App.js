@@ -28,11 +28,7 @@ function App() {
   const [cards, setCards] = useState([]);
   const [status, setStatus] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
-  const [email, setEmail] = useState('');
-  const [data, setData] = useState( {      
-    password: '',
-    email: '',          
-  });   
+  const [email, setEmail] = useState('');   
   const history = useHistory();
 
   useEffect(() => {
@@ -147,8 +143,8 @@ function App() {
     const { email, password } = data;       
       mestoAuth.authorize(email, password)  
       .then((data) => {                        
-        if (data.jwt) {
-          setToken(data.jwt);
+        if (data.token) {
+          setToken(data.token);
           setEmail(email);      
           setLoggedIn(true)         
           history.push('/');
@@ -177,13 +173,9 @@ function App() {
     const jwt = getToken();
       if (jwt) {     
       mestoAuth.getContent(jwt).then((res) => {
-        if (res) {  
-          const data = {
-            password: res.password,
-            email: res.email
-          }        
-        setLoggedIn(true);        
-        setData(data);
+        if (res) {           
+        setLoggedIn(true);  
+        setEmail(email)    
         setStatus(res);
         history.push('/')
         }
