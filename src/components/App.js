@@ -119,20 +119,20 @@ function App() {
   const { email, password } = data;    
   mestoAuth.register( email, password ).then((res) => {        
     if(res.statusCode !== 400){  
-      setStatus('sucess')
-      handleInfoTooltipOpen()      
+      setStatus('sucess');
+      handleInfoTooltipOpen();      
       history.push('/signin'); 
     }                
   })
   .catch((err) => {
     console.log(err);
       if(err.status === 400) {
-        setStatus('unsucess')
-        handleInfoTooltipOpen()
+        setStatus('unsucess');
+        handleInfoTooltipOpen();
         return console.log('Некорректно заполнено одно из полей');          
       } else if (err.status === 500) {
-        setStatus('unsucess')
-        handleInfoTooltipOpen()
+        setStatus('unsucess');
+        handleInfoTooltipOpen();
         return console.log('Ошибка сервера');
       }
     });
@@ -175,17 +175,20 @@ function App() {
       mestoAuth.getContent(jwt).then((res) => {
         if (res) {           
         setLoggedIn(true);  
-        setEmail(email)    
+        setEmail(email);    
         setStatus(res);
         history.push('/')
         }
       }).catch((err) => {
         console.log(err.status);
         if(err.status === 401) {
+          removeToken();
           return console.log('Переданный токен некорректен');
         } else if(!jwt) {
+          removeToken();
           return console.log('Токен не передан или передан не в том формате');
         } else if (err.status === 500) {
+          removeToken();
           return console.log('Ошибка сервера');
         }
       });
